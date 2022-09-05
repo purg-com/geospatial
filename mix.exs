@@ -11,7 +11,7 @@ defmodule Geospatial.MixProject do
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      packege: package(),
+      package: package(),
       elixirc_paths: elixirc_paths(Mix.env()),
       aliases: aliases()
     ]
@@ -29,7 +29,6 @@ defmodule Geospatial.MixProject do
       {:geo, "~> 3.4"},
       {:tz_world, "~> 1.0"},
       {:mox, "~> 1.0", only: :test},
-      {:ex_machina, "~> 2.4", only: :test},
       {:hackney, "~> 1.6"}
     ]
   end
