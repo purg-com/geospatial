@@ -4,7 +4,7 @@
 
 defmodule Geospatial.Providers.Photon do
   @moduledoc """
-  [Photon](https://photon.komoot.de) backend.
+  [Photon](https://photon.komoot.io) backend.
   """
 
   alias Geospatial.Address

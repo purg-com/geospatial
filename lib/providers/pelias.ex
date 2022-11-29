@@ -39,11 +39,23 @@ defmodule Geospatial.Providers.Pelias do
     |> fetch_features
   end
 
+  @impl Provider
+  @doc """
+  Pelias implementation for `c:Geospatial.Providers.Provider.get_by_id/2`.
+  """
+  @spec get_by_id(String.t(), keyword()) :: list(Address.t())
+  def get_by_id(id, options \\ []) do
+    :get_by_id
+    |> build_url(%{id: id}, options)
+    |> fetch_features
+  end
+
   @spec build_url(atom(), map(), list()) :: String.t()
   defp build_url(method, args, options) do
     limit = Keyword.get(options, :limit, 10)
     lang = Keyword.get(options, :lang, "en")
     endpoint = Keyword.get(options, :endpoint, endpoint(__MODULE__))
+    auth = [api_key: Keyword.get(options, :api_key, api_key())]
 
     url =
       case method do
@@ -54,9 +66,14 @@ defmodule Geospatial.Providers.Pelias do
 
         :geocode ->
           "#{endpoint}/v1/reverse?point.lon=#{args.lon}&point.lat=#{args.lat}"
+
+        :get_by_id ->
+          "#{endpoint}/v1/place?ids=#{args.id}"
       end
 
-    add_parameter(url, options, :country_code)
+    url
+    |> add_parameter(options, :country_code)
+    |> add_parameter(auth, :api_key)
   end
 
   @spec fetch_features(String.t()) :: list(Address.t())
@@ -93,7 +110,7 @@ defmodule Geospatial.Providers.Pelias do
       description: Map.get(properties, "name"),
       postal_code: Map.get(properties, "postalcode"),
       street: street_address(properties),
-      origin_id: "#{Map.get(properties, "id")}",
+      origin_id: "#{Map.get(properties, "gid")}",
       origin_provider: "pelias",
       type: get_type(properties)
     }
@@ -146,4 +163,11 @@ defmodule Geospatial.Providers.Pelias do
 
   defp do_add_parameter(url, :country_code, country_code),
     do: "#{url}&boundary.country=#{country_code}"
+
+  defp do_add_parameter(url, :api_key, api_key),
+    do: "#{url}&api_key=#{api_key}"
+
+  defp api_key do
+    Application.get_env(:geospatial, __MODULE__) |> get_in([:api_key])
+  end
 end

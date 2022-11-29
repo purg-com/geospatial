@@ -10,7 +10,7 @@ by adding `geospatial` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:geospatial, "~> 0.1.0"}
+    {:geospatial, "~> 0.2.0"}
   ]
 end
 ```

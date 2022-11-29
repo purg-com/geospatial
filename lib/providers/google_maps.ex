@@ -76,6 +76,30 @@ defmodule Geospatial.Providers.GoogleMaps do
     end
   end
 
+  @impl Provider
+  @doc """
+  Google Maps implementation for `c:Geospatial.Providers.Provider.get_by_id/2`.
+  """
+  @spec get_by_id(String.t(), keyword()) :: list(Address.t())
+  def get_by_id(id, options \\ []) do
+    url = build_url(:place_details, %{place_id: id}, options)
+
+    Logger.debug("Asking Google Maps for address with #{url}")
+
+    %Tesla.Env{status: 200, body: body} = HTTP.get!(url)
+
+    case body do
+      %{"result" => result, "status" => "OK"} ->
+        [process_data(result, options)]
+
+      %{"status" => "REQUEST_DENIED", "error_message" => error_message} ->
+        raise ArgumentError, message: to_string(error_message)
+
+      %{"status" => "ZERO_RESULTS"} ->
+        []
+    end
+  end
+
   @spec build_url(:search | :geocode | :place_details, map(), list()) :: String.t() | no_return
   defp build_url(method, args, options) do
     limit = Keyword.get(options, :limit, 10)

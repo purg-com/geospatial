@@ -21,7 +21,7 @@ defmodule Geospatial.Providers.PhotonTest do
       |> expect(:call, fn
         %{
           method: :get,
-          url: "https://photon.komoot.de/api/?q=10%20rue%20Jangot&lang=en&limit=10"
+          url: "https://photon.komoot.io/api/?q=10%20rue%20Jangot&lang=en&limit=10"
         },
         _opts ->
           {:ok, %Tesla.Env{status: 200, body: data}}

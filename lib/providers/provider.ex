@@ -9,7 +9,7 @@ defmodule Geospatial.Providers.Provider do
   ## Supported backends
 
     * `Geospatial.Providers.Nominatim` [🔗](https://wiki.openstreetmap.org/wiki/Nominatim)
-    * `Geospatial.Providers.Photon` [🔗](https://photon.komoot.de)
+    * `Geospatial.Providers.Photon` [🔗](https://photon.komoot.io)
     * `Geospatial.Providers.Addok` [🔗](https://github.com/addok/addok)
     * `Geospatial.Providers.MapQuest` [🔗](https://developer.mapquest.com/documentation/open/)
     * `Geospatial.Providers.GoogleMaps` [🔗](https://developers.google.com/maps/documentation/geocoding/intro)
