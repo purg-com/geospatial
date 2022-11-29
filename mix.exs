@@ -29,7 +29,8 @@ defmodule Geospatial.MixProject do
       {:geo, "~> 3.4"},
       {:tz_world, "~> 1.0"},
       {:mox, "~> 1.0", only: :test},
-      {:hackney, "~> 1.6"}
+      {:hackney, "~> 1.6"},
+      {:ex_doc, "~> 0.29", only: :dev, runtime: false}
     ]
   end
 
