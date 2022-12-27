@@ -83,7 +83,7 @@ defmodule Geospatial.Providers.MapQuest do
   VOID implementation for `c:Geospatial.Providers.Provider.get_by_id/2`.
   """
   @spec get_by_id(String.t(), keyword()) :: list(Address.t())
-  defp get_by_id(_id, _options), do: []
+  def get_by_id(_id, _options), do: []
 
   defp process_data(
          %{
