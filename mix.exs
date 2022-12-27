@@ -1,12 +1,12 @@
 defmodule Geospatial.MixProject do
   use Mix.Project
 
-  @source_url "https://gitlab.com/mkljczk/geospatial"
+  @source_url "https://gitlab.com/thecarnie/geospatial"
 
   def project do
     [
       app: :geospatial,
-      version: "0.2.0",
+      version: "0.2.1",
       elixir: "~> 1.9",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
@@ -38,7 +38,7 @@ defmodule Geospatial.MixProject do
     [
       description:
         "This library extracts the Mobilizon.Service.Geospatial module from Mobilizon.",
-      maintainers: ["Marcin Mikołajczak"],
+      maintainers: ["Marcin Mikołajczak","thecarnie"],
       licenses: ["AGPL-3.0-only"],
       links: %{
         "GitLab" => @source_url
