@@ -41,6 +41,13 @@ defmodule Geospatial.Providers.Mimirsbrunn do
     |> fetch_features
   end
 
+  @impl Provider
+  @doc """
+  VOID implementation for `c:Geospatial.Providers.Provider.get_by_id/2`.
+  """
+  @spec get_by_id(String.t(), keyword()) :: list(Address.t())
+  defp get_by_id(_id, _options), do: []
+
   @spec build_url(atom(), map(), list()) :: String.t()
   defp build_url(method, args, options) do
     limit = Keyword.get(options, :limit, 10)
