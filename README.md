@@ -1,6 +1,7 @@
 # Geospatial
 
-This library extracts the [Mobilizon.Service.Geospatial](https://docs.joinmobilizon.org/administration/configure/geocoders) module from [Mobilizon](https://framagit.org/framasoft/mobilizon). The only new *feature* is the `Geospatial.Providers.Provider.get_by_id/2` function.
+This library extracts the [Mobilizon.Service.Geospatial](https://docs.joinmobilizon.org/administration/configure/geocoders) module from [Mobilizon](https://framagit.org/framasoft/mobilizon). The only new *feature* is the `Geospatial.Providers.Provider.get_by_id/2` function.  
+> This particular repository aims to satisfy implementation contracts for get_by_id/2 in all providers.
 
 ## Installation
 
@@ -10,7 +11,7 @@ by adding `geospatial` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:geospatial, "~> 0.2.0"}
+    {:geospatial, "~> 0.2.1", git: "https://github.com/thecarnie/geospatial/", branch: "master"}
   ]
 end
 ```
